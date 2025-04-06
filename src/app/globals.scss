@@ -5,6 +5,17 @@
   --foreground: #171717;
 }
 
+
+@page layout-landscape {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@page layout-portrait {
+  size: A4;
+  margin: 0;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
