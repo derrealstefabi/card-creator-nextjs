@@ -16,7 +16,7 @@ export const SinglePlaylistView: React.FC<Props> = ({promisedPlaylist, onConfirm
     return (
         <div className={"flex flex-col items-start"}>
             <div
-                className={"flex flex-col items-start w-full p-5 rounded-t-lg bg-gray-500 border-b-2 border-b-gray-400"}>
+                className={"flex flex-col items-start w-full pb-5 border-b-2 border-b-gray-400"}>
                 <div className={"flex items-center mb-6"}>
                     <img className="block h-24 w-24 rounded-full me-5"
                          src={playlist.images.at(0)?.url || ""} alt=""/>
@@ -32,22 +32,22 @@ export const SinglePlaylistView: React.FC<Props> = ({promisedPlaylist, onConfirm
             </div>
 
 
-            <ul className={"rounded-b-lg bg-gray-600  divide-y-1 divide-gray-400"}>
-                {playlist.tracks.items.map(playlistedTrack => {
+            <div className={"w-full rounded-b-lg bg-gray-700 divide-y-1 divide-gray-400"}>
+                {playlist.tracks.items.filter(item => !!item).map(playlistedTrack => {
                         const track = playlistedTrack.track as Track;
-                        return <li>
-                            <div className={"flex items-center mb-0 p-2"}>
+                    return (
+                        <div key={track.id} className={"flex items-center mb-0 p-2"}>
                                 <img className="block h-12 w-12 rounded-full me-5"
                                      src={track.album.images.at(0)?.url || ""} alt=""/>
                                 <div className={"flex flex-col items-start"}>
-                                    <div>{track.name}</div>
+                                    <div className={`font-bold`}>{track.name}</div>
                                     <div>{track.artists.at(0)?.name || "unknown artist"}</div>
                                 </div>
                             </div>
-                        </li>
+                    )
                     }
                 )}
-            </ul>
+            </div>
         </div>
     );
 }

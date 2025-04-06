@@ -25,7 +25,7 @@ export const Cards: React.FC<Props> = ({promisedPlaylist, onCancel}) => {
         });
 
         console.log("format:", format);
-        if (['card-a8', 'card-poker', 'card-magic', 'card-yugioh', 'card-pokemon'].includes(format)) {
+        if (['card-a8'].includes(format)) {
             console.log("format: landscape", format);
             document.body.classList.remove('layout-portrait');
             document.body.classList.add('layout-landscape');
@@ -39,9 +39,10 @@ export const Cards: React.FC<Props> = ({promisedPlaylist, onCancel}) => {
     }
 
     return (playlist &&
-        <>
-            <div className={"flex flex-row  flex-wrap w-full print:hidden"}>
+        <div className={'flex flex-col flex-wrap w-full'}>
+            <div className={"flex flex-row flex-wrap ms-3 mb-3 gap-5 print:hidden"}>
                 <select
+                    className={`px-5 bg-gray-700`}
                     value={selectedFormat}
                     onChange={e => changeCardFormat(e.target.value)}
                     name="format">
@@ -56,10 +57,10 @@ export const Cards: React.FC<Props> = ({promisedPlaylist, onCancel}) => {
                 <Button onClick={printCards}>Print</Button>
                 <Button onClick={onCancel}>Back</Button>
             </div>
-            <div className={"flex flex-row flex-wrap w-full"}>
-                {playlist.tracks.items.map(
-                    track => <div className={"flex flex-col"}><Card track={track.track}></Card></div>
+            <div className={"flex flex-row flex-wrap gap-2 print:gap-0"}>
+                {playlist.tracks.items.filter(track => !!track.track).map(
+                    track => <div key={track.track.id}><Card track={track.track}></Card></div>
                 )}
             </div>
-        </>);
+        </div>);
 }

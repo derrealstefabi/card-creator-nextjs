@@ -22,11 +22,14 @@ export default function Search() {
     const playlists = sdk.search(query, ['playlist']);
 
     return (
-        <>
-            <Button onClick={() => router.back()}>Back to search</Button>
+        <div className={`flex flex-col`}>
+            <div className={`mb-5 flex flex-row justify-between items-center`}>
+                <h2 className={`text-xl`}>Results for search {query}</h2>
+                <Button onClick={() => router.back()}>Back to search</Button>
+            </div>
             <Suspense fallback={<Loading/>}>
                 <PlaylistSearchResult promisedPlaylists={playlists}></PlaylistSearchResult>
             </Suspense>
-        </>
+        </div>
     );
 }

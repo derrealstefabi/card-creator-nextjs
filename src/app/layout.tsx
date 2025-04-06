@@ -25,11 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <h1 className={"mb-8 print:hidden"}>Card Creator</h1>
+    <body className={`${geistSans.variable} ${geistMono.variable} antialiased p-10 print:p-0`}>
+    <h1 className={"w-full text-center text-3xl mb-8 print:hidden"}>Card Creator</h1>
+    <div
+        className={`flex justify-center m-auto w-max max-w-full p-8 rounded-lg bg-gray-800 print:w-full print:bg-white print:p-0`}>
         {children}
+    </div>
       </body>
     </html>
   );

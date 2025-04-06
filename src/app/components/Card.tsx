@@ -8,14 +8,15 @@ type Props = {
 
 export const Card: React.FC<Props> = ({track}) => {
     const randomColor = getRandomColor();
-    return <div className={"flex flex-row"}>
-        <div className={`card card-a8 flex box-border flex-col justify-center m-0 border-10 border-gray-800 rounded-lg`}
+    return <div className={"flex flex-row gap-2 print:gap-0"}>
+        <div
+            className={`card card-a8 flex box-border flex-col justify-center m-0 border-10 border-stone-900 rounded-lg`}
              style={{backgroundColor: randomColor}}>
             <img src={`https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:${track["id"]}`}></img>
         </div>
 
         <div
-            className={`card card-a8 flex box-border flex-col justify-center items-center m-0 border-10 border-gray-800 rounded-lg text-black text-lg font-bold`}
+            className={`card card-a8 flex box-border flex-col justify-center items-center m-0 border-10 border-stone-900 rounded-lg text-black text-lg font-bold`}
             style={{backgroundColor: randomColor}}>
             <div
                 className={"track-date text-5xl text-center font-black mb-3"}>{(track["album"]["release_date"] as string).slice(0, 4)}</div>
