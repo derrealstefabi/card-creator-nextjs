@@ -6,8 +6,7 @@ import {PlaylistSearchResult} from "@/app/components/PlaylistSearchResult";
 import {Button} from "@/app/components/Button";
 import {useSpotifyApi} from "@/app/hooks/useSpotifyApi";
 
-
-export default function Search() {
+function SearchParamWrapper() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -31,5 +30,13 @@ export default function Search() {
                 <PlaylistSearchResult promisedPlaylists={playlists}></PlaylistSearchResult>
             </Suspense>
         </div>
+    );
+}
+
+export default function Search() {
+    return (
+        <Suspense fallback={<Loading/>}>
+            <SearchParamWrapper></SearchParamWrapper>
+        </Suspense>
     );
 }

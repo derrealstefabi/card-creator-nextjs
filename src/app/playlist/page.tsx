@@ -7,8 +7,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {Loading} from "@/app/components/Loading";
 import {useSpotifyApi} from "@/app/hooks/useSpotifyApi";
 
-
-export default function Playlist() {
+function SearchParamWrapper() {
     const searchParams = useSearchParams();
 
     const sdk = useSpotifyApi();
@@ -32,6 +31,14 @@ export default function Playlist() {
                                                onCancel={returnToSearchResult}></SinglePlaylistView>}
             {!!showCards && <Cards promisedPlaylist={playlist}
                                    onCancel={returnToSearchResult}></Cards>}
+        </Suspense>
+    );
+}
+
+export default function Playlist() {
+    return (
+        <Suspense fallback={<Loading/>}>
+            <SearchParamWrapper></SearchParamWrapper>
         </Suspense>
     );
 }
