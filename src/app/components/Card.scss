@@ -1,0 +1,65 @@
+.card {
+  break-inside: avoid;
+}
+
+.layout-landscape {
+  page: layout-landscape
+}
+
+
+.layout-portrait {
+  page: layout-portrait
+}
+
+@media print {
+  .card {
+    margin: 0 !important;
+  }
+}
+
+.card-poker {
+  height: 63mm;
+  width: 88mm;
+}
+
+.card-yugioh {
+  height: 59mm;
+  width: 86mm;
+}
+
+.card-magic {
+  height: 63mm;
+  width: 88mm;
+}
+
+.card-pokemon {
+  height: 63mm;
+  width: 88mm;
+}
+
+.card-a9 {
+  height: 37mm;
+  width: 52mm;
+
+  .track-date {
+    font-size: 24px;
+  }
+
+  .track-name {
+    font-size: 14px;
+  }
+
+  .track-artist {
+    font-size: 14px;
+  }
+}
+
+.card-a8 {
+  height: 52mm;
+  width: 74mm;
+}
+
+.card-a7 {
+  height: 74mm;
+  width: 105mm;
+}
