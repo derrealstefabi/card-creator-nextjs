@@ -16,12 +16,12 @@ export default function Home() {
     }
 
     return (
-        <Form action={searchPlaylists} className={'flex flex-col justify-center items-center w-[25vw]'}>
-            <div className={'mb-5 w-full'}>
+        <Form action={searchPlaylists} className={'flex flex-col justify-center items-center w-lg'}>
+            <div className={'mb-8 w-full'}>
                 <Input vertical hideLabel label={"Search for a playlist"} placeholder={"Search for a playlist"}
                        name={"query"}></Input>
             </div>
-            <div className={'flex flex-col w-2/3'}>
+            <div className={'flex flex-col w-3/5'}>
                 <Button submit={true}>Search</Button>
             </div>
 
