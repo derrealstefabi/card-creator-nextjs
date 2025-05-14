@@ -26,7 +26,7 @@ export const SinglePlaylistView: React.FC<Props> = ({promisedPlaylist, onConfirm
                     </div>
                 </div>
                 <div className={"flex items-center w-full justify-between"}>
-                    <Button onClick={onConfirm}>Create Deck from this Playlist</Button>
+                    <Button onClick={onConfirm}>Create Deck</Button>
                     <Button onClick={onCancel}>Back</Button>
                 </div>
             </div>

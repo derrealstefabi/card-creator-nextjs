@@ -21,16 +21,16 @@ export const PlaylistSearchResult: React.FC<Props> = ({promisedPlaylists}) => {
         {
             playlists.filter(playlist => !!playlist).map(playlist =>
                 <div key={playlist.id}>
-                    <div className={"flex items-center mb-3 p-5 rounded-lg bg-gray-900"}>
-                        <img className="block h-24 w-24 rounded-full me-7" src={playlist.images.at(0)?.url || ""}
+                    <div className={"flex flex-col lg:flex-row items-center mb-3 p-5 rounded-lg bg-gray-900"}>
+                        <img className="block h-24 w-24 rounded-full me-7 mb-5 lg:mb-0" src={playlist.images.at(0)?.url || ""}
                              alt=""/>
-                        <div className={"flex flex-col items-start me-7"}>
+                        <div className={"flex flex-col items-start me-7 mb-5 lg:mb-0"}>
                             <div><span className={'font-black'}>Name: </span>{playlist.name}</div>
                             <div><span
                                 className={'font-black'}>Author: </span>{playlist.owner?.display_name ? playlist.owner?.display_name : "anonymous"}
                             </div>
                         </div>
-                        <div className={`ms-auto justify-self-end`}>
+                        <div className={`lg:ms-auto justify-self-end`}>
                             <Button onClick={() => selectPlaylist(playlist.id)}>Select Playlist</Button>
                         </div>
                     </div>
