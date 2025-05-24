@@ -5,20 +5,20 @@ import {use} from "react";
 import {useRouter} from "next/navigation";
 
 type Props = {
-    promisedPlaylists: Promise<Required<Pick<PartialSearchResult, "playlists">>>,
+    promisedPlaylists: Promise<Required<Pick<PartialSearchResult, "playlists">>> | Promise<null>,
 }
 
 export const PlaylistSearchResult: React.FC<Props> = ({promisedPlaylists}) => {
 
     const router = useRouter();
-    const playlists = use(promisedPlaylists).playlists.items as SimplifiedPlaylist[];
+    const playlists = use(promisedPlaylists)?.playlists.items as SimplifiedPlaylist[];
 
     function selectPlaylist(playlistId: string): void {
-        router.push(`playlist?id=${playlistId}`);
+        router.push(`playlist?q=${playlistId}`);
     }
 
     return <>
-        {
+        {playlists &&
             playlists.filter(playlist => !!playlist).map(playlist =>
                 <div key={playlist.id}>
                     <div className={"flex flex-col lg:flex-row items-center mb-3 p-5 rounded-lg bg-gray-900"}>

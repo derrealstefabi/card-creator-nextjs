@@ -14,7 +14,19 @@ function SearchParamWrapper() {
     const router = useRouter();
     const [showCards, setShowCards] = useState<boolean | null>(false);
 
-    const playlistId = searchParams.get('id');
+    const query = searchParams.get('q') || '';
+
+    if (!query) {
+        router.back();
+    }
+
+    let playlistId = query;
+
+    if (query.includes('spotify')) {
+        let endIdx = query.indexOf('?') == -1 ? query.length : query.indexOf('?');
+        playlistId = query.slice(query.indexOf('playlist') + 9, endIdx);
+    }
+
     const playlist = sdk.playlists.getPlaylist(playlistId || '');
 
     function createCards(): void {
@@ -26,12 +38,13 @@ function SearchParamWrapper() {
     }
 
     return (
-        <Suspense fallback={<Loading/>}>
-            {!showCards && <SinglePlaylistView promisedPlaylist={playlist} onConfirm={createCards}
-                                               onCancel={returnToSearchResult}></SinglePlaylistView>}
-            {!!showCards && <Cards promisedPlaylist={playlist}
-                                   onCancel={returnToSearchResult}></Cards>}
-        </Suspense>
+
+            <Suspense fallback={<Loading/>}>
+                {!showCards && <SinglePlaylistView promisedPlaylist={playlist} onConfirm={createCards}
+                                                   onCancel={returnToSearchResult}></SinglePlaylistView>}
+                {!!showCards && <Cards promisedPlaylist={playlist}
+                                       onCancel={returnToSearchResult}></Cards>}
+            </Suspense>
     );
 }
 

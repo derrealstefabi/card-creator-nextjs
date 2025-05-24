@@ -1,34 +1,54 @@
 'use client';
-import React, {Suspense} from "react";
+import React, {Suspense, useState} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import {Loading} from "@/app/components/Loading";
 import {PlaylistSearchResult} from "@/app/components/PlaylistSearchResult";
 import {Button} from "@/app/components/Button";
 import {useSpotifyApi} from "@/app/hooks/useSpotifyApi";
+import Form from "next/form";
+import {Input} from "@/app/components/Input";
+import {PartialSearchResult} from "@spotify/web-api-ts-sdk";
 
 function SearchParamWrapper() {
     const router = useRouter();
-    const searchParams = useSearchParams();
 
     const sdk = useSpotifyApi();
 
-    const query = searchParams.get('q') || '';
+    const [playlists, setPlaylists] = useState<Promise<Required<Pick<PartialSearchResult, "playlists">>> | Promise<null>>(Promise.resolve(null));
 
-    if (!query) {
-        router.back();
+    const searchPlaylists = (formData: FormData): void => {
+        const query = formData.get("query") as string;
+        if (!query) return;
+        setPlaylists(sdk.search(query, ['playlist'], undefined, 50));
     }
 
-    const playlists = sdk.search(query, ['playlist']);
-
     return (
-        <div className={`flex flex-col`}>
+
+        <div className={'flex flex-col justify-center items-center w-full h-full'}>
             <div className={`mb-5 flex flex-row justify-between items-center`}>
-                <h2 className={`text-xl`}>Results for search {query}</h2>
-                <Button onClick={() => router.back()}>Back to search</Button>
+                <h2 className={`text-xl`}>Search all playlists (aka get 50 random playlists)</h2>
             </div>
-            <Suspense fallback={<Loading/>}>
-                <PlaylistSearchResult promisedPlaylists={playlists}></PlaylistSearchResult>
-            </Suspense>
+            <Form action={searchPlaylists} className={'flex flex-col justify-center items-center w-lg'}>
+                <div className={'mb-5 w-full'}>
+                    <Input vertical hideLabel label={"Search for a playlist (you won't find it though)"}
+                           placeholder={"Search for a playlist (you won't find it though)"}
+                           name={"query"}></Input>
+                </div>
+                <div className={'flex flex-row justify-between items-center w-full mb-5'}>
+                    <div className={'flex flex-col w-2/5'}>
+                        <Button submit={true}>Search</Button>
+                    </div>
+                    <div className={'flex flex-col w-2/5'}>
+                    <Button onClick={() => router.back()}>Go Back (pls)</Button>
+                    </div>
+                </div>
+
+            </Form>
+            <div className={`flex flex-col`}>
+                <Suspense fallback={<Loading/>}>
+                    <PlaylistSearchResult promisedPlaylists={playlists}></PlaylistSearchResult>
+                </Suspense>
+            </div>
         </div>
     );
 }
