@@ -2,6 +2,7 @@
 import {Playlist, Track} from "@spotify/web-api-ts-sdk";
 import {Button} from "@/app/components/Button";
 import {use} from "react";
+import Image from 'next/image';
 
 type Props = {
     promisedPlaylist: Promise<Playlist<Track>>,
@@ -18,7 +19,7 @@ export const SinglePlaylistView: React.FC<Props> = ({promisedPlaylist, onConfirm
             <div
                 className={"flex flex-col items-start w-full pb-5 border-b-2 border-b-gray-400"}>
                 <div className={"flex items-center mb-6"}>
-                    <img className="block h-24 w-24 rounded-full me-5"
+                    <Image className="block h-24 w-24 rounded-full me-5"
                          src={playlist.images.at(0)?.url || ""} alt=""/>
                     <div className={"flex flex-col items-start"}>
                         <div>Name: {playlist.name}</div>
@@ -37,7 +38,7 @@ export const SinglePlaylistView: React.FC<Props> = ({promisedPlaylist, onConfirm
                         const track = playlistedTrack.track as Track;
                         return (
                             <div key={track.id} className={"flex items-center mb-0 p-2"}>
-                                <img className="block h-12 w-12 rounded-full me-5"
+                                <Image className="block h-12 w-12 rounded-full me-5"
                                      src={track.album.images.at(0)?.url || ""} alt=""/>
                                 <div className={"flex flex-col items-start"}>
                                     <div className={`font-bold`}>{track.name}</div>

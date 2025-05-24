@@ -1,6 +1,6 @@
 'use client';
 import React, {Suspense, useState} from "react";
-import {useRouter, useSearchParams} from "next/navigation";
+import {useRouter} from "next/navigation";
 import {Loading} from "@/app/components/Loading";
 import {PlaylistSearchResult} from "@/app/components/PlaylistSearchResult";
 import {Button} from "@/app/components/Button";

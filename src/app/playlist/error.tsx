@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function PlaylistError({
                                   error,
-                                  reset,
                               }: {
     error: Error & { digest?: string }
     reset: () => void

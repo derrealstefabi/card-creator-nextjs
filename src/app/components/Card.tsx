@@ -1,5 +1,6 @@
 import './Card.scss'
 import React from "react";
+import Image from 'next/image';
 import {Track} from "@spotify/web-api-ts-sdk";
 
 type Props = {
@@ -12,8 +13,8 @@ export const Card: React.FC<Props> = ({track}) => {
         <div
             className={`card card-a8 flex box-border flex-col justify-center m-0 border-10 border-stone-900 rounded-lg`}
             style={{backgroundColor: randomColor}}>
-            <img alt={"spotify code"}
-                 src={`https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:${track["id"]}`}></img>
+            <Image alt={"spotify code"}
+                 src={`https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:${track["id"]}`}></Image>
         </div>
 
         <div

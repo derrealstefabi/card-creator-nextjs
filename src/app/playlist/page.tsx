@@ -23,7 +23,7 @@ function SearchParamWrapper() {
     let playlistId = query;
 
     if (query.includes('spotify')) {
-        let endIdx = query.indexOf('?') == -1 ? query.length : query.indexOf('?');
+        const endIdx = query.indexOf('?') == -1 ? query.length : query.indexOf('?');
         playlistId = query.slice(query.indexOf('playlist') + 9, endIdx);
     }
 

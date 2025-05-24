@@ -40,12 +40,12 @@ export default function Home() {
                     <Button onClick={toggleWhyNoFullSearch}>Why no full search function?</Button>
                 </div>
             </div>
-            { showHowToGetPlId && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>Open your Playlist on Spotify and click on 'share' -{">"} 'copy link'. Paste the link into the search box below.</div>}
+            { showHowToGetPlId && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>Open your Playlist on Spotify and click on {"'"}share{"'"}-{">"} {"'"}copy link{"."} Paste the link into the search box below.</div>}
             { whyNoFullSearch && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>
                 Spotify seems to not want people to use their search function outside of Spotify itself.
                 The search returns <b>WAY TOO MANY GARBAGE RESULTS</b> and there is no way to filter them.
-                It is also not possible to get more than 1000 results per search (which is usually not enough to find what you're looking for).
-                Feel free to <Link className={"underline text-blue-600 hover:text-blue-800 visited:text-purple-600"} href={'search'}>search all playlists</Link>, but don't expect to find what you're looking for.
+                It is also not possible to get more than 1000 results per search (which is usually not enough to find what you{"'"}re looking for).
+                Feel free to <Link className={"underline text-blue-600 hover:text-blue-800 visited:text-purple-600"} href={'search'}>search all playlists</Link>, but don{"'"}t expect to find what you{"'"}re looking for.
             </div>}
 
             <Form action={searchPlaylists} className={'flex flex-col justify-center items-center w-lg'}>
