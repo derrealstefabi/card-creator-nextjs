@@ -14,17 +14,10 @@ function SearchParamWrapper() {
     const router = useRouter();
     const [showCards, setShowCards] = useState<boolean | null>(false);
 
-    const query = searchParams.get('q') || '';
+    const playlistId = searchParams.get('id') || '';
 
-    if (!query) {
+    if (!playlistId) {
         router.back();
-    }
-
-    let playlistId = query;
-
-    if (query.includes('spotify')) {
-        const endIdx = query.indexOf('?') == -1 ? query.length : query.indexOf('?');
-        playlistId = query.slice(query.indexOf('playlist') + 9, endIdx);
     }
 
     const playlist = sdk.playlists.getPlaylist(playlistId || '');

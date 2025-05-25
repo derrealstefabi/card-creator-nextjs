@@ -13,8 +13,8 @@ export const Card: React.FC<Props> = ({track}) => {
         <div
             className={`card card-a8 flex box-border flex-col justify-center m-0 border-10 border-stone-900 rounded-lg`}
             style={{backgroundColor: randomColor}}>
-            <Image alt={"spotify code"}
-                 src={`https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:${track["id"]}`}></Image>
+            <img alt={"spotify code"}
+                 src={`https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:${track["id"]}`}></img>
         </div>
 
         <div

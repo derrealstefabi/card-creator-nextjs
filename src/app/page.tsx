@@ -15,7 +15,12 @@ export default function Home() {
     function searchPlaylists(formData: FormData): void {
         const query = formData.get("query") as string;
         if (!query) return;
-        router.push(`playlist?q=${query}`);
+        let playlistId = query;
+        if (query.includes('spotify')) {
+            const endIdx = query.indexOf('?') == -1 ? query.length : query.indexOf('?');
+            playlistId = query.slice(query.indexOf('playlist') + 9, endIdx);
+        }
+        router.push(`playlist?id=${playlistId}`);
     }
 
     function toggleHowToGetId(): void {
@@ -40,7 +45,7 @@ export default function Home() {
                     <Button onClick={toggleWhyNoFullSearch}>Why no full search function?</Button>
                 </div>
             </div>
-            { showHowToGetPlId && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>Open your Playlist on Spotify and click on {"'"}share{"'"}-{">"} {"'"}copy link{"."} Paste the link into the search box below.</div>}
+            { showHowToGetPlId && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>Open your Playlist on Spotify and click on {"'"}share{"'"} -{">"} {"'"}copy link{"'."} Paste the link into the search box below.</div>}
             { whyNoFullSearch && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>
                 Spotify seems to not want people to use their search function outside of Spotify itself.
                 The search returns <b>WAY TOO MANY GARBAGE RESULTS</b> and there is no way to filter them.
