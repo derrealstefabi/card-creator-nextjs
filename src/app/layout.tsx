@@ -29,7 +29,7 @@ export default function RootLayout({
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased py-10 px-5 md:px-10 print:p-0`}>
         <nav className={"flex  justify-center mb-8"}>
-            <Link href={'/'}><Image className={'w-[48px] h-[48px]'} src={'cat.svg'} alt={'home'}></Image></Link>
+            <Link href={'/'}><Image width={48} height={48} className={'w-[48px] h-[48px]'} src={'cat.svg'} alt={'home'}></Image></Link>
             <Link href={'/'} className={'ms-auto me-5'}>Card Creator</Link>
             <Link href={'/songstats'}>Show Stats for Song</Link>
         </nav>
