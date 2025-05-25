@@ -42,7 +42,7 @@ export default function Home() {
                 </div>
             </Form>
 
-            {allTracks && allTracks.map((track: any) => <div onClick={() => selectTrack(track)} className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>{track.name}</div>)}
+            {allTracks && allTracks.map((track: any) => <div key={track.id} onClick={() => selectTrack(track)} className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>{track.name}</div>)}
             {selectedTrack && <div className={'w-lg bg-gray-700 p-3 mb-5 rounded'}>{selectedTrack.name}</div>}
         </div>
     );
