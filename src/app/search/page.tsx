@@ -26,7 +26,7 @@ function SearchParamWrapper() {
 
         <div className={'flex flex-col justify-center items-center w-full h-full'}>
             <div className={`mb-5 flex flex-row justify-between items-center`}>
-                <h2 className={`text-xl`}>Search all playlists (aka get 50 random playlists)</h2>
+                <h2 className={`text-xl`}>Search all playlists (aka get some random playlists)</h2>
             </div>
             <Form action={searchPlaylists} className={'flex flex-col justify-center items-center w-lg'}>
                 <div className={'mb-5 w-full'}>

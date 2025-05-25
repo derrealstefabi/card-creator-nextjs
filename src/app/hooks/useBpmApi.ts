@@ -3,7 +3,7 @@ export function useBpmApi() {
     const clientSecret = "a0a01d58a7745147ccb11dc9cd49235c";
 
     function getTrack(trackId: string): Promise<any> {
-        return fetch(`https://getsongbpm.com/api/song/${trackId}`, {
+        return fetch(`https://api.getsong.co/song/${trackId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export function useBpmApi() {
     function search(track: string, artist: string): Promise<any> {
         if (!track && !artist) return Promise.resolve([]);
 
-        let url = `https://getsongbpm.com/api/search/`;
+        let url = `https://api.getsong.co/search/`;
         if (!track) {
             url += `?type=artist&lookup=${artist}`;
         } else if (!artist) {
